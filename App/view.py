@@ -23,6 +23,7 @@
  * Dario Correal
  """
 
+import threading
 import config as cf
 import sys
 # import resource
@@ -32,9 +33,7 @@ import controller
 from DISClib.ADT import list as lt
 assert cf
 import sys
-…
-default_limit = 1000
-sys.setrecursionlimit(default_limit*10)
+
 
 """
 La vista se encarga de la interacción con el usuario
@@ -242,7 +241,7 @@ def menu_cycle():
             filtered_list = result[1]
             size = lt.size(filtered_list)
             print("Para", size, "elementos, tiempo:", str(delta_time), "[ms]")
-            print("Algoritmo recursivo:", re
+            print("Algoritmo recursivo:", re)
 
         elif int(inputs) == 10:
             # TODO modificar opcion 10 del menu (parte 2)
@@ -269,5 +268,8 @@ def menu_cycle():
 
 # main del ejercicio
 if __name__ == "__main__":
-    # TODO modificar main para reserar memoria (parte 2)
-    menu_cycle()
+# TODO ajuste del main para reserar memoria (parte 2)
+    threading.stack_size(67108864*2) # 128MB stack
+    sys.setrecursionlimit(default_limit*1000000)
+    thread = threading.Thread(target=menu_cycle)
+    thread.start()
