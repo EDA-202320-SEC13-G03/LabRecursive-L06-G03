@@ -293,9 +293,10 @@ def findBookbyISBN(catalog, bookisbn, recursive=True):
         el libro
     """
     # TODO implementar la funcion para la busqueda binaria (parte 2)
-    if recursive:
+    if recursive == True:
         return recursiveSearchBookByISBN(catalog, bookisbn)
-    pass
+    else:
+        return iterativeSearchBookByISBN(catalog, bookisbn)
 
 
 def averageBookRatings(catalog, recursive=True):
@@ -332,7 +333,10 @@ def filterBooksByRating(catalog, low, high, recursive=True):
 
 
 # Funciones de busqueda y filtros
-
+def compfunction(catalog1,catalog2):
+    return int(float(catalog1["isbn13"])) < int(float(catalog2["isbn13"]))
+    
+    
 def recursiveSearchBookByISBN(catalog, bookisbn):
     """recursiveSearchBookByISBN es la mascara para la busqueda recursiva,
     recibe el catalogo y el ISBN del libro buscarlo en la lista de libros del
@@ -347,13 +351,15 @@ def recursiveSearchBookByISBN(catalog, bookisbn):
         lista de libros
     """
     # TODO implementar la mascara de la busqueda recursiva (parte 2)
-    pass
+    
+    libro=
+    
 
 
 def searchBookByISBN(books, bookisbn, low, high):
     """searchBookByISBN ejecuta recursivamente la busqueda binaria el ISBN
     del libro en la lista, si no lo encuentra retorna -1, utiliza la llave
-    "isbn13" para la comparacion
+    "isbn13" para la comparacion 
 
     Args:
         books (ADT List): lista de libros en el catalogo
@@ -365,10 +371,14 @@ def searchBookByISBN(books, bookisbn, low, high):
         int: indice del libro en la lista, -1 si no lo encuentra
     """
     # TODO implementar recursivamente binary search (parte 2)
-    pass
+    qs.sort(catalog["books"],compfunction)
+    if lt.size(books) == 0:
+        return -1
+    
+    
+    
 
-
-def iterativeSearchBookByISBN(catalog, bookid):
+def iterativeSearchBookByISBN(catalog, bookisbn):
     """iterativeSearchBookByISBN ejecuta iterativamente la busqueda
     binaria el ISBN del libro en la lista, si no lo encuentra retorna -1,
     utiliza la llave "isbn13" para la comparacion
